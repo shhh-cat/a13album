@@ -45,7 +45,7 @@ class UploadController extends Controller
 				}
 				return redirect()->back()->with('success', $message);
 			} else {
-				return redirect()->back()->with(['failedformat','Tải ảnh thất bại. Chỉ cho phép ảnh định dạng jpg, jpeg, png, gif, tiff, bmp.']);
+				return redirect()->back()->with('failedformat',['Tải ảnh thất bại. Chỉ cho phép ảnh định dạng jpg, jpeg, png, gif, tiff, bmp.']);
 			}
 		}
 	}
