@@ -59,7 +59,7 @@
 	<div class="container">
 		<div class="row">
         <div class="col-md-2"> <img src="{{asset('icon.jpg')}}" width="80" /></div>
-		<div class="col-md-8"><h2>A13 Album</h2></div>
+		<div class="col-md-8"><h1>A13 Album</h1></div>
 		<div class="col-md-2"><a class="btn btn-success" href="{{route('album')}}">Xem Album</a></div>
 		</div>
 		<br>
