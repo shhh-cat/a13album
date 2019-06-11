@@ -31,6 +31,14 @@
 		</ul>
 	</div>
 	@enderror
+
+	@error('failedformat')
+	<div class="alert alert-danger">
+		<ul>
+				<li>Tải ảnh thất bại. Chỉ cho phép ảnh định dạng jpg, jpeg, png, gif, tiff, bmp.</li>
+		</ul>
+	</div>
+	@enderror
 	@if (\Session::has('success'))
     <div class="alert alert-success">
         <ul>
