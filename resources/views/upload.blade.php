@@ -24,15 +24,13 @@
 	</style>
 </head>
 <body>
-	@if ($errors->any())
+	@error('photos')
 	<div class="alert alert-danger">
 		<ul>
-			@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
+				<li>Hãy chọn ảnh cần lưu</li>
 		</ul>
 	</div>
-	@endif
+	@enderror
 	@if (\Session::has('success'))
     <div class="alert alert-success">
         <ul>
@@ -71,7 +69,7 @@
   						<h3 id="status"></h3>
  						 <p id="loaded_n_total"></p>
                     <br>     --}}
-					<input type="submit" class="btn btn-primary" value="Upload" onclick="uploadFile()" />	
+					<input type="submit" class="btn btn-primary" value="Lưu trữ" onclick="uploadFile()" />	
                 </form>
 			</div>
 		</div>

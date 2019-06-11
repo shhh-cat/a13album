@@ -19,7 +19,7 @@ class UploadController extends Controller
 		);
         // kiểm tra có files sẽ xử lý
 		if($request->hasFile('photos')) {
-			$allowedfileExtension=['jpg','png'];
+			$allowedfileExtension=['jpg', 'jpeg', 'png', 'gif', 'tiff', 'bmp'];
 			$files = $request->file('photos');
             // flag xem có thực hiện lưu DB không. Mặc định là có
 			$exe_flg = true;
@@ -41,11 +41,11 @@ class UploadController extends Controller
 				foreach ($request->photos as $photo) {
 					$filename = $photo->getClientOriginalName();
 					Storage::cloud()->put($filename, file_get_contents($photo));
-					array_push($message,'Upload '.$filename.' successfully');
+					array_push($message,'Tải ảnh "'.$filename.'" thành công');
 				}
 				return redirect()->back()->with('success', $message);
 			} else {
-				echo "Falied to upload. Only accept jpg, png photos.";
+				echo "Tải ảnh thất bại. Chỉ cho phép ảnh định dạng jpg, jpeg, png, gif, tiff, bmp, .";
 			}
 		}
 	}
