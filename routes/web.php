@@ -11,11 +11,26 @@
 |
 */
 
-Route::get('/', 'UploadController@uploadForm');
+Route::get('/', function () {
+    return view('main');
+})->name('main');
+
+Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
+Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
+
+Route::get('profile', function () {
+    return view('profile');
+})->middleware('auth')->name('profile');
+Route::get('/upload', 'UploadController@uploadForm')->name('getupload');
 Route::get('/album', function(){
     return redirect()->back()->with('warning',['Comming soon!']);
 })->name('album');
-Route::post('/uploads', 'UploadController@uploadSubmit')->name('postupload');
+Route::post('/upload', 'UploadController@uploadSubmit')->name('postupload');
 Route::get('test', function() {
     Storage::disk('google')->put('test.txt', 'Hello World');
 });
+Auth::routes([
+    'register' => false,
+]);
+
+Route::get('/home', 'HomeController@index')->name('home');
