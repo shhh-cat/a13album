@@ -13,10 +13,17 @@
 			<div class="col-md-6">
             <form class="form-group" action="{{route('postupload')}}" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
-					<label for="Product Name">Ảnh (up nhiều ảnh cũng được):</label>
+					<label for="Product Name">Ảnh (có thể chọn nhiều ảnh cùng lúc):</label>
 					<br>
 					<input type="file" class="form-control-file	" name="photos[]" multiple />
 					
+					<br>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="1" name="private" id="private">
+						<label class="form-check-label text-muted" for="private">
+						 Riêng tư (Không công khai) ?
+						</label>
+					</div>
 					<br>
 					{{-- <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
   						<h3 id="status"></h3>
@@ -24,7 +31,7 @@
                     <br>     --}}
 					<input type="submit" class="btn btn-primary" value="Lưu trữ" onclick="uploadFile()" />	
 				</form>
-				@error('photos')
+	@error('photos')
 	<div class="alert alert-danger">
 		<ul>
 				<li>Hãy chọn ảnh cần lưu</li>

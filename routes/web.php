@@ -22,9 +22,7 @@ Route::get('profile', function () {
     return view('profile');
 })->middleware('auth')->name('profile');
 Route::get('/upload', 'UploadController@uploadForm')->name('getupload');
-Route::get('/album', function(){
-    return redirect()->back()->with('warning',['Comming soon!']);
-})->name('album');
+Route::get('/album', 'AlbumController@showAll')->name('album');
 Route::post('/upload', 'UploadController@uploadSubmit')->name('postupload');
 Route::get('test', function() {
     Storage::disk('google')->put('test.txt', 'Hello World');

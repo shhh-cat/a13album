@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Storage;
+use Image;
+use Auth;
+
 class UploadController extends Controller
 {
 	public function __construct()
@@ -45,7 +48,23 @@ class UploadController extends Controller
 				$message = [];
 				foreach ($request->photos as $photo) {
 					$filename = $photo->getClientOriginalName();
-					Storage::cloud()->put($filename, file_get_contents($photo));
+					$unique_name = md5($filename. time()).'.'.$photo->getClientOriginalExtension();;
+					$filesize = filesize($photo);
+					$sizeOptimize = "1000000";
+					// Handing optimize(resize) image
+					$img = Image::make(file_get_contents($photo));
+					$img->encode('jpg', ($filesize < $sizeOptimize) ? 100 : ($sizeOptimize*100)/$filesize);
+					
+					// Save info of image to database
+					\App\Image::create([
+						'name' => $filename,
+						'unique_name' => $unique_name,
+						'user_id' => Auth::id(),
+						'private' => ($request->private == 1) ? true : false,
+					]);
+
+					// Upload to drive
+					Storage::cloud()->put($unique_name, $img);
 					array_push($message,'Tải ảnh "'.$filename.'" thành công');
 				}
 				return redirect()->back()->with('success', $message);

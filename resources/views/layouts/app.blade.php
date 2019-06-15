@@ -10,7 +10,7 @@
     <title>A13 Album</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/social/bootstrap-social.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fa/css/all.css') }}" rel="stylesheet">
-
+    @yield('style')
 </head>
 <body>
     <div id="app">
@@ -87,5 +87,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('script')
 </body>
 </html>
