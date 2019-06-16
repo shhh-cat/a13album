@@ -19,6 +19,8 @@ class Images extends Migration
             $table->string('unique_name')->unique();
             $table->string('user_id');
             $table->boolean('private');
+            $table->string('small_link');
+            $table->string('original_link');
             $table->timestamps();
         });
     }

@@ -13,7 +13,18 @@ class UploadController extends Controller
     {
         $this->middleware('auth');
 	}
-	
+
+	public function getURL(String $filename)
+	{
+		$file = collect(Storage::cloud()->listContents('/', false))
+                ->where('type', '=', 'file')
+                ->where('filename', '=', pathinfo($filename, PATHINFO_FILENAME))
+                ->where('extension', '=', pathinfo($filename, PATHINFO_EXTENSION))
+				->first();
+		return Storage::cloud()->url($file['path']);
+		
+	}
+
 	public function uploadForm()
 	{
 		return view('upload');
@@ -48,23 +59,37 @@ class UploadController extends Controller
 				$message = [];
 				foreach ($request->photos as $photo) {
 					$filename = $photo->getClientOriginalName();
-					$unique_name = md5($filename. time()).'.'.$photo->getClientOriginalExtension();;
-					$filesize = filesize($photo);
-					$sizeOptimize = "1000000";
+					$unique_name = md5($filename. time()).'.'.$photo->getClientOriginalExtension();
+					//$filesize = filesize($photo);
+					//$sizeOptimize = "512000";
 					// Handing optimize(resize) image
 					$img = Image::make(file_get_contents($photo));
-					$img->encode('jpg', ($filesize < $sizeOptimize) ? 100 : ($sizeOptimize*100)/$filesize);
+					$img->resize(null, 400, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+//					$img->encode('jpg', ($filesize < $sizeOptimize) ? 100 : ($sizeOptimize*100)/$filesize);
+					$img->encode('jpg',90);
 					
+
+					// Upload to drive
+					// small file
+					Storage::cloud()->put('m_'.$unique_name, $img);
+					$mURL = $this->getURL('m_'.$unique_name);
+					// original file
+					Storage::cloud()->put($unique_name, file_get_contents($photo));
+					$URL = $this->getURL($unique_name);
+
 					// Save info of image to database
 					\App\Image::create([
 						'name' => $filename,
 						'unique_name' => $unique_name,
 						'user_id' => Auth::id(),
 						'private' => ($request->private == 1) ? true : false,
+						'small_link' => $mURL,
+						'original_link' => $URL
 					]);
 
-					// Upload to drive
-					Storage::cloud()->put($unique_name, $img);
+
 					array_push($message,'Tải ảnh "'.$filename.'" thành công');
 				}
 				return redirect()->back()->with('success', $message);

@@ -12,6 +12,6 @@ class Image extends Model
     }
 
     protected $fillable = [
-        'name', 'unique_name', 'user_id', 'private'
+        'name', 'unique_name', 'user_id', 'private', 'small_link', 'original_link'
     ];
 }
