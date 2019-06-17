@@ -13,8 +13,11 @@
 
 Route::get('/', function () {
     return view('main');
-})->name('main');
+})->middleware('auth')->name('main');
 
+Route::get('/dang-nhap', function () {
+    return view('login');
+})->name('dang-nhap') ;
 Route::get('auth/facebook', 'FacebookAuthController@redirectToProvider')->name('facebook.login') ;
 Route::get('auth/facebook/callback', 'FacebookAuthController@handleProviderCallback');
 

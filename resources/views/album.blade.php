@@ -16,7 +16,6 @@
     rowHeight : 150,
     lastRow : 'nojustify',
     margins : 5,
-    caption: false,
 }).on('jg.complete', function () {
     $('.swipeboxExampleImg').swipebox();
 });

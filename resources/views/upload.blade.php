@@ -5,7 +5,7 @@
 		<div class="row">
         <div class="col-md-3"></div>
 		<div class="col-md-7"><h2>Tải ảnh lên</h2></div>
-		<div class="col-md-2"><a class="btn btn-success" href="{{route('album')}}">Xem Album</a></div>
+		<div class="col-md-2"><a class="btn btn-dark" href="{{route('album')}}">Xem ảnh công khai</a></div>
 		</div>
 		<br>
 		<div class="row">
@@ -34,7 +34,10 @@
 	@error('photos')
 	<div class="alert alert-danger">
 		<ul>
-				<li>Hãy chọn ảnh cần lưu</li>
+				@foreach ($errors->all(	) as $error )
+				<li>{{ $error }}</li>
+				@endforeach
+				{{-- <li>Hãy chọn ảnh cần lưu</li> --}}
 		</ul>
 	</div>
 	@enderror

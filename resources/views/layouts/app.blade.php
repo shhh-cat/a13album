@@ -63,6 +63,9 @@
                                     <a class="dropdown-item" href="{{ route('getupload') }}">
                                         Tải ảnh lên
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('album') }}">
+                                        Ảnh công khai
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         Thông tin cá nhân
                                     </a>

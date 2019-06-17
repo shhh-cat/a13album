@@ -30,7 +30,7 @@ class FacebookAuthController extends Controller
  
         Auth::login($authUser, true);
  
-        return redirect()->route('getupload');
+        return redirect()->route('main');
     }
  
     private function findOrCreateUser($facebookUser){

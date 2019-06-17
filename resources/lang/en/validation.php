@@ -129,8 +129,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'photos' => [
+            'required' => 'Hãy chọn ảnh cần lưu',
+            'max' => 'Giới hạn 10 ảnh mỗi lẫn lưu trữ',
         ],
     ],
 
