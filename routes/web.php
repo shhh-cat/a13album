@@ -26,7 +26,11 @@ Route::get('profile', function () {
 })->middleware('auth')->name('profile');
 Route::get('/upload', 'UploadController@uploadForm')->name('getupload');
 Route::get('/album', 'AlbumController@showAll')->name('album');
-Route::post('/upload', 'UploadController@uploadSubmit')->name('postupload');
+
+
+Route::post('/upload', 'UploadController@store')->name('storeimage');
+Route::post('/upload/delete', 'UploadController@delete')->name('deleteimage');
+
 Route::get('test', function() {
     Storage::disk('google')->put('test.txt', 'Hello World');
 });

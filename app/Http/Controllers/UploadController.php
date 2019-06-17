@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Storage;
 use Image;
 use Auth;
-
+use Validator;
+use Response;
 class UploadController extends Controller
 {
 	public function __construct()
@@ -30,35 +31,36 @@ class UploadController extends Controller
 		return view('upload');
 	}
 
-	public function uploadSubmit(Request $request)
+	public function delete(Request $request)
+	{
+		$filename = $request->get('filename');
+		\App\Image::where('name', $filename)->delete();
+		return $filename;
+	}
+
+	public function store(Request $request)
 	{
         // Thiết lập required cho cả 2 mục input
-		$this->validate($request, [
-			'photos'=>'required|max:1',
+		$rules= array ([
+			'photo'=>'required|max:1',
 		]);
-		//if (count($request->photos) > 10) 
-        // kiểm tra có files sẽ xử lý
-		if($request->hasFile('photos')) {
-			$allowedfileExtension=['jpg', 'jpeg', 'png', 'gif', 'tiff', 'bmp'];
-			$files = $request->file('photos');
-            // flag xem có thực hiện lưu DB không. Mặc định là có
-			$exe_flg = true;
-			// kiểm tra tất cả các files xem có đuôi mở rộng đúng không
-			foreach($files as $file) {
-				$extension = $file->getClientOriginalExtension();
-				$check=in_array($extension,$allowedfileExtension);
 
-				if(!$check) {
-                    // nếu có file nào không đúng đuôi mở rộng thì đổi flag thành false
-					$exe_flg = false;
-					break;
-				}
-			} 
+		$validation = Validator::make($request->toArray(), $rules);
+		if ($validation->fails())
+		{
+			return Response::make($validation->errors->first(), 400);
+		}
+		//if (count($request->photo) > 10) 
+        // kiểm tra có files sẽ xử lý
+		if($request->hasFile('photo')) {
+			$allowedfileExtension=['jpg', 'jpeg', 'png', 'gif', 'tiff', 'bmp'];
+			$photo = $request->file('photo');
+			// kiểm tra tất cả các files xem có đuôi mở rộng đúng không
+			$extension = $photo->getClientOriginalExtension();
+			$check=in_array($extension,$allowedfileExtension);
+
 			// nếu không có file nào vi phạm validate thì tiến hành lưu DB
-			if($exe_flg) {
-				// duyệt từng ảnh và thực hiện lưu
-				$message = [];
-				foreach ($request->photos as $photo) {
+			if($check) {
 					$filename = $photo->getClientOriginalName();
 					$unique_name = md5($filename. time()).'.'.$photo->getClientOriginalExtension();
 					//$filesize = filesize($photo);
@@ -89,13 +91,11 @@ class UploadController extends Controller
 						'small_link' => $mURL,
 						'original_link' => $URL
 					]);
-
-
-					array_push($message,'Tải ảnh "'.$filename.'" thành công');
-				}
-				return redirect()->back()->with('success', $message);
+				return Response::json('success', 200);
+				//return redirect()->back()->with('success', ['Tải ảnh "'.$filename.'" thành công']);
 			} else {
-				return redirect()->back()->with('failedformat',['Tải ảnh thất bại. Chỉ cho phép ảnh định dạng jpg, jpeg, png, gif, tiff, bmp.']);
+				return Response::json('error', 400);
+				//return redirect()->back()->with('failedformat',['Tải ảnh thất bại. Chỉ cho phép ảnh định dạng jpg, jpeg, png, gif, tiff, bmp.']);
 			}
 		}
 	}
