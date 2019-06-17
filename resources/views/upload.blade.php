@@ -13,9 +13,9 @@
 			<div class="col-md-6">
             <form class="form-group" action="{{route('postupload')}}" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
-					<label for="Product Name">Ảnh (có thể chọn nhiều ảnh cùng lúc):</label>
+					<label for="Product Name">Ảnh:</label>
 					<br>
-					<input type="file" class="form-control-file	" name="photos[]" multiple />
+					<input type="file" class="form-control-file	" name="photos[]" />
 					
 					<br>
 					<div class="form-check">

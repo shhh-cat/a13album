@@ -131,7 +131,7 @@ return [
     'custom' => [
         'photos' => [
             'required' => 'Hãy chọn ảnh cần lưu',
-            'max' => 'Giới hạn 10 ảnh mỗi lẫn lưu trữ',
+            'max' => 'Giới hạn 1 ảnh mỗi lẫn lưu trữ',
         ],
     ],
 

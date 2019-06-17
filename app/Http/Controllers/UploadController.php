@@ -34,7 +34,7 @@ class UploadController extends Controller
 	{
         // Thiết lập required cho cả 2 mục input
 		$this->validate($request, [
-			'photos'=>'required|max:10',
+			'photos'=>'required|max:1',
 		]);
 		//if (count($request->photos) > 10) 
         // kiểm tra có files sẽ xử lý
