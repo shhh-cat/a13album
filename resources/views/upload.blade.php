@@ -12,7 +12,7 @@
 Dropzone.options.dropzone = {
 	dictDefaultMessage: 'Kéo thả hoặc ấn vào đây để tải ảnh lên',
 	paramName: "photo", // The name that will be used to transfer the file
-	maxFilesize: 10, // MB
+	maxFilesize: 20, // MB
 	uploadMultiple: false,
 	renameFile: function (file) {
                     var dt = new Date();
@@ -23,12 +23,11 @@ Dropzone.options.dropzone = {
 		'X-CSRF-TOKEN': '{!! csrf_token() !!}'
 	},
 	acceptedFiles: ".jpeg,.jpg,.png,.gif",
-	dictFileTooBig: '<div class="text-warning">Ảnh lớn hớn 10MB</div>',
+	dictFileTooBig: '<div class="text-warning">Ảnh lớn hớn 20MB</div>',
 	dictInvalidFileType: 'Chỉ hỗ trợ định dạng .jpeg, .jpg, .png, .gif',
 	dictCancelUpload: '<div class="text-info btn">Hủy bỏ</div>',
 	dictCancelUploadConfirmation: 'Chắc chắn hủy bỏ ?',
 	dictRemoveFile: '<div class="text-danger btn">Xóa ảnh</div>',
-
 	addRemoveLinks: true,
 	timeout: 50000,
 	removedfile: function (file) {
@@ -74,7 +73,7 @@ Dropzone.options.dropzone = {
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
-					<label for="Product Name">Ảnh:</label>
+					<label>Ảnh dưới < 20MB</label>
 					<form class="dropzone bg-light rounded" id="dropzone" action="{{route('storeimage')}}" method="post" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="form-check">
