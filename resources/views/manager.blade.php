@@ -67,7 +67,7 @@
                                 @foreach (Auth::user()->images->where('private', '=' ,0) as $image)
                                 <li class="list-group-item">
                                     <img alt="{{$image->name}}" src="{{$image->small_link}}" width="300"/>
-                                    <button type="button" class="btn btn-danger btn-sm del" data-image="{{$image->name}}">Xóa</button>
+                                    <button type="button" class="btn btn-danger btn-sm text-center m-1 del" data-image="{{$image->name}}">Xóa</button>
                                 </li>
                                 @endforeach 
                             </ul>
@@ -96,7 +96,7 @@
                                     @foreach (Auth::user()->images->where('private', '=' ,1) as $image)
                                     <li class="list-group-item">
                                         <img alt="{{$image->name}}" src="{{$image->small_link}}" width="300"/>
-                                        <button type="button" class="btn btn-danger btn-sm del" data-image="{{$image->name}}">Xóa</button>
+                                        <button type="button" class="btn btn-danger btn-sm text-center m-1 del" data-image="{{$image->name}}">Xóa</button>
                                     </li>
                                     @endforeach 
                                 </ul>
