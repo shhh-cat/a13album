@@ -53,20 +53,19 @@
                                 </li>
                             @endif --}}
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('getupload') }}">
+                            <li class="nav-item py-1">
+                                <a class="nav-link text-dark" href="{{ route('getupload') }}">
                                     Tải ảnh lên
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('album') }}">
+                            <li class="nav-item py-1">
+                                <a class="nav-link text-dark" href="{{ route('album') }}">
                                     Ảnh công khai
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="35" width="35" class="rounded">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    
+                                    <img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="35" width="35" class="rounded">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
