@@ -60,6 +60,9 @@
                       </button>
                     </div>
                     <div class="modal-body">
+                            @if (!Auth::user()->images->where('private', '=' ,0)->count())
+                            <p class="text-center">Không có ảnh</p>
+                          @else
                             <ul class="list-group">
                                 @foreach (Auth::user()->images->where('private', '=' ,0) as $image)
                                 <li class="list-group-item">
@@ -68,7 +71,7 @@
                                 </li>
                                 @endforeach 
                             </ul>
-                            
+                            @endif
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal" onClick="window.location.reload();">Đóng</button>
@@ -86,6 +89,9 @@
                           </button>
                         </div>
                         <div class="modal-body">
+                                @if (!Auth::user()->images->where('private', '=' ,1)->count())
+                                <p class="text-center">Không có ảnh</p>
+                              @else
                                 <ul class="list-group">
                                     @foreach (Auth::user()->images->where('private', '=' ,1) as $image)
                                     <li class="list-group-item">
@@ -94,7 +100,7 @@
                                     </li>
                                     @endforeach 
                                 </ul>
-                                
+                                @endif
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal" onClick="window.location.reload();">Đóng</button>
@@ -108,17 +114,24 @@
                 <h3>[Ảnh công khai] <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#delete-image-public">
                         Quản lí ảnh
                       </button></h3>
-                <div id="public" >
-                        @foreach (Auth::user()->images->where('private', '=' ,0) as $image)
-                            <a href="{{$image->original_link}}" class="swipeboxExampleImg">
-                                <img alt="{{$image->name}}" src="{{$image->small_link}}"/>
-                            </a>
-                        @endforeach                   
-                </div>
+                      @if (!Auth::user()->images->where('private', '=' ,0)->count())
+                          <p class="text-center">Không có ảnh</p>
+                        @else
+                        <div id="public" >
+                                @foreach (Auth::user()->images->where('private', '=' ,0) as $image)
+                                    <a href="{{$image->original_link}}" class="swipeboxExampleImg">
+                                        <img alt="{{$image->name}}" src="{{$image->small_link}}"/>
+                                    </a>
+                                @endforeach                   
+                        </div>
+                      @endif
                 <hr/>
                 <h3>[Ảnh riêng tư]
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#delete-image-private">Quản lí ảnh </button>
                 </h3>
+                @if (!Auth::user()->images->where('private', '=' ,1)->count())
+                          <p class="text-center">Không có ảnh</p>
+                        @else
                 <div id="private" >
                         @foreach (Auth::user()->images->where('private', '=' ,1) as $image)
                             <a href="{{$image->original_link}}" class="swipeboxExampleImg">
@@ -126,6 +139,7 @@
                             </a>
                         @endforeach                   
                 </div>
+                @endif
             </div>
         </div>
 </div>
