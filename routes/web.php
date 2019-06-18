@@ -26,7 +26,9 @@ Route::get('profile', function () {
 })->middleware('auth')->name('profile');
 Route::get('/upload', 'UploadController@uploadForm')->name('getupload');
 Route::get('/album', 'AlbumController@showAll')->name('album');
-
+Route::get('/manager', function () {
+    return view('manager');
+})->middleware('auth')->name('manager');
 
 Route::post('/upload', 'UploadController@store')->name('storeimage');
 Route::post('/upload/delete', 'UploadController@delete')->name('deleteimage');

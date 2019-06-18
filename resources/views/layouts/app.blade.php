@@ -63,6 +63,11 @@
                                     Ảnh công khai
                                 </a>
                             </li>
+                            <li class="nav-item py-1">
+                                <a class="nav-link text-dark" href="{{ route('manager') }}">
+                                    Quản lí ảnh
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="35" width="35" class="rounded">
