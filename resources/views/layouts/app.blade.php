@@ -54,12 +54,12 @@
                             @endif --}}
                         @else
                             <li class="nav-item">
-                                <a class="dropdown-item" href="{{ route('getupload') }}">
+                                <a class="nav-link" href="{{ route('getupload') }}">
                                     Tải ảnh lên
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="dropdown-item" href="{{ route('album') }}">
+                                <a class="nav-link" href="{{ route('album') }}">
                                     Ảnh công khai
                                 </a>
                             </li>
