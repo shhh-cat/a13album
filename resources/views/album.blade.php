@@ -13,7 +13,7 @@
 <script type="text/javascript">
     
     $("#mygallery").justifiedGallery({
-    rowHeight : 150,
+    rowHeight : 100,
     lastRow : 'nojustify',
     margins : 5,
 }).on('jg.complete', function () {
