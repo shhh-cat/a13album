@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -64,8 +64,9 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
+                                <img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="35" width="35" class="rounded">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="35" width="35" class="rounded">
+                                    
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
