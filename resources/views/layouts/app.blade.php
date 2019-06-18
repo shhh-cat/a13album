@@ -53,6 +53,16 @@
                                 </li>
                             @endif --}}
                         @else
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{{ route('getupload') }}">
+                                    Tải ảnh lên
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{{ route('album') }}">
+                                    Ảnh công khai
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="{{ Auth::user()->avatar }}" alt="Facebook Avatar" height="35" width="35" class="rounded">
@@ -60,12 +70,6 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('getupload') }}">
-                                        Tải ảnh lên
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('album') }}">
-                                        Ảnh công khai
-                                    </a>
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         Thông tin cá nhân
                                     </a>
