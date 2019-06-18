@@ -22,7 +22,7 @@
 			data: {filename: $(this).data("image")},
 			success: function (data) {
                 $ths.html('Đã xóa');
-                $ths.attr('class', 'btn btn-success btn-sm');
+                $ths.attr('class', 'btn btn-success btn-sm text-center m-1');
 				console.log(data);
 			},
 			error: function (e) {
@@ -51,7 +51,7 @@
 @section('content')
 <div class="container">
         <div class="modal fade" id="delete-image-public" tabindex="-1" role="dialog" aria-labelledby="delete-image-publicLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="delete-image-publicLabel">Xóa ảnh công khai:</h5>
@@ -66,7 +66,7 @@
                             <ul class="list-group">
                                 @foreach (Auth::user()->images->where('private', '=' ,0) as $image)
                                 <li class="list-group-item">
-                                    <img alt="{{$image->name}}" src="{{$image->small_link}}" width="300"/>
+                                    <img alt="{{$image->name}}" src="{{$image->small_link}}" width="200"/>
                                     <button type="button" class="btn btn-danger btn-sm text-center m-1 del" data-image="{{$image->name}}">Xóa</button>
                                 </li>
                                 @endforeach 
@@ -80,7 +80,7 @@
                 </div>
               </div>
               <div class="modal fade" id="delete-image-private" tabindex="-1" role="dialog" aria-labelledby="delete-image-publicLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="delete-image-publicLabel">Xóa ảnh riêng tư:</h5>
@@ -95,7 +95,7 @@
                                 <ul class="list-group">
                                     @foreach (Auth::user()->images->where('private', '=' ,1) as $image)
                                     <li class="list-group-item">
-                                        <img alt="{{$image->name}}" src="{{$image->small_link}}" width="300"/>
+                                        <img alt="{{$image->name}}" src="{{$image->small_link}}" width="200"/>
                                         <button type="button" class="btn btn-danger btn-sm text-center m-1 del" data-image="{{$image->name}}">Xóa</button>
                                     </li>
                                     @endforeach 
