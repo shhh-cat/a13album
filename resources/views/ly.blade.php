@@ -3,6 +3,7 @@
 @section('script')
 <script src="{{ asset('swipebox-master/lib/jquery-2.1.0.min.js')}}"></script>
 <script type="text/javascript">
+    @if ($data)
     var result = 0;
     $('#result').text(result);
     @foreach ($data as $dt)
@@ -18,6 +19,7 @@
         }
     }); 
     @endforeach
+    @endif
 </script>
 @endsection
 
