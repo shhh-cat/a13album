@@ -41,3 +41,4 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/lythuyetly/{chuong?}', 'LythuyetLyController@show')->name('ly');
