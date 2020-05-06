@@ -15,7 +15,7 @@ class FollowController extends Controller
      */
     public function index()
     {
-        return Follow::where('time','TranPhatLoc')->get;
+        return Follow::where('time','TranPhatLoc')->get();
     }
 
     /**
