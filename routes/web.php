@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('main');
 })->middleware('auth')->name('main');
 Route::get('followList', 'FollowController@index');
+Route::get('followReset', 'FollowController@destroy');
 Route::get('follow/{time?}', 'FollowController@store');
 Route::get('/dang-nhap', function () {
     return view('login');

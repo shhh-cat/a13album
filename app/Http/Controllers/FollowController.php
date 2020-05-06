@@ -15,7 +15,7 @@ class FollowController extends Controller
      */
     public function index()
     {
-        return Follow::all();
+        return Follow::where('time','TranPhatLoc')->get;
     }
 
     /**
@@ -86,8 +86,9 @@ class FollowController extends Controller
      * @param  \App\LythuyetLy  $lythuyetLy
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LythuyetLy $lythuyetLy)
+    public function destroy()
     {
-        //
+        Follow::truncate();
+        return redirect('followList');
     }
 }
